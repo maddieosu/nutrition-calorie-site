@@ -1,23 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <!-- standard html labeling -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="Kris Haro">
 		<title>Fitness Tracker</title>
+
+    <!-- linking fonts/css files -->
 		<link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" href="css/normalize.css">
 		<link rel="stylesheet" href="css/styling.css">
+
+    <!-- linking React API -->
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
 	</head>
 
-	<body>
+	<body onload="document.body.style.opacity='1'">
     <div id="header">
       <h1>Reach Your Fitness Goal</h1>
       <p>Just enter some basic information</p>
-    </div> <!-- haeder -->
+    </div> <!-- header -->
 
-    
+    <!-- Getting user info -->
+    <form>
+      Height :
+      <input type="text" id="height" name="height">
+    </form>
+    <form>
+      Weight:
+      <input type="text" id="weight" name="weight">
+    </form>
+    <form>
+      <p id="">Sex</p>
+      <input type="radio" id="maleS" name="sex" value="Male">
+      <label for="maleS">Male</label><br>
+      <input type="radio" id="femaleS" name="sex" value="Female">
+      <label for="femaleS">Female</label><br>
+      <!-- for documentation on html forms visit https://www.w3schools.com/html/html_forms.asp -->
+    </form>
+    <form>
+      Weight Goal:
+      <input type="text" name="goal"> lbs
+    </form>
+    <form>
+      <input type="button" id="execute" value="Get my diet plan">
+    </form>
+
 	</body> <!-- body -->
 </html>

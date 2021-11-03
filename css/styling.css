@@ -28,3 +28,23 @@ Author: Christopher Castig | @castig
 /*-----------------------------------------------------------------------------
 03=MAIN
 -----------------------------------------------------------------------------*/
+body {
+  background: url('../images/notebook.png'); /* add a fallback color of #d6d6d6 */
+  color: #000000;
+  font-family: 'Lato', sans-serif;
+  line-height: 1.7; /* line-height is unit-less */
+  font-size: 100%;
+  margin: auto;
+  align-items: center;
+  width: 50%;
+  opacity: 0;
+  transition: opacity 3s;
+}
+
+#header{
+  background-image: url('../images/logo.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  text-align: center;
+}
