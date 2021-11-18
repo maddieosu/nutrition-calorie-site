@@ -1,5 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 import './styling.css'
+import './normalize.css'
 
 const LOCAL_STORAGE_KEY = 'myLocalStorageKey';
 
@@ -30,7 +31,7 @@ function App() {
     heightInput.current.value = null;
     weightInput.current.value = null;
     goalInput.current.value = null;
-    setAdvice("Your height is " + height + "\nYour weight is " + weight + "\nYour sex is " + sex + ".\nYou are " + (weight - goal) + " lbs away from your goal.")
+    setAdvice("Your height is " + height + "\nYour weight is " + weight + "\nYour sex is " + sex + ".\nYou are " + (weight - goal) + " lbs away from your goal."); 
   };
 
   useEffect(() => {

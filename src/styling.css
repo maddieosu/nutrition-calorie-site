@@ -1,0 +1,82 @@
+/*
+Project Name: Monthly Resolutions
+Client: One Month
+Author: Christopher Castig | @castig
+*/
+
+
+/*-----------------------------------------------------------------------------
+01=BASE
+-----------------------------------------------------------------------------*/
+
+/* Box Model Hack */
+* {
+    -moz-box-sizing: border-box; /* Firexfox */
+    -webkit-box-sizing: border-box; /* Safari/Chrome/iOS/Android */
+    box-sizing: border-box; /* IE */
+}
+
+.clear {
+   clear: both;
+}
+
+
+/*-----------------------------------------------------------------------------
+02=LAYOUT
+-----------------------------------------------------------------------------*/
+
+/*-----------------------------------------------------------------------------
+03=MAIN
+-----------------------------------------------------------------------------*/
+body {
+ /* background: url('../images/notebook.png');  */
+ color: #000000; 
+ font-family: 'Lato', sans-serif;
+ line-height: 1.7; /* line-height is unit-less */
+ font-size: 100%;
+ margin: auto;
+ align-items: center;
+ width: 50%;
+ -webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
+ -moz-animation: fadein 2s; /* Firefox < 16 */
+  -ms-animation: fadein 2s; /* Internet Explorer */
+   -o-animation: fadein 2s; /* Opera < 12.1 */
+      animation: fadein 2s;
+}
+
+#header{
+ background-image: url('./images/logo.png');
+ background-repeat: no-repeat;
+ background-position: center;
+ background-size: contain;
+ text-align: center;
+}
+
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Firefox < 16 */
+@-moz-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Internet Explorer */
+@-ms-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Opera < 12.1 */
+@-o-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
