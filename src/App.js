@@ -66,14 +66,14 @@ function App() {
           1253: "Cholesterol",
           1258: "Saturated Fat",
         }
-        let nutrients = result.foods[0].foodNutrients;
-        let nutrientInfo = {};
-        for (const entry of nutrients) {
+        let foodSelection = result.foods[0];
+        let nutrientInfo = {"Serving Size": `Serving Size: ${foodSelection.servingSize} ${foodSelection.servingSizeUnit.toLowerCase()}<br>`};
+        for (const entry of foodSelection.foodNutrients) {
           let nutrientName = nutritionIdMap[entry.nutrientId];
-          nutrientInfo[nutrientName] = `${nutrientName} - ${entry.value} ${entry.unitName.toLowerCase()}<br>`;
+          nutrientInfo[nutrientName] = `${nutrientName}: ${entry.value} ${entry.unitName.toLowerCase()}<br>`;
         }
-        let nutritionDataString = `${nutritionQuery} has the following nutritional content:<br>`;
-        let nutritionOrder = ["Energy", "Total Fat", "Saturated Fat", "Cholesterol", "Sodium", "Total Carbohydrates", "Total Sugars", "Added Sugar", "Protein"];
+        let nutritionDataString = `${nutritionQuery} has the following nutritional content<br>`;
+        let nutritionOrder = ["Serving Size", "Energy", "Total Fat", "Saturated Fat", "Cholesterol", "Sodium", "Total Carbohydrates", "Total Sugars", "Added Sugar", "Protein"];
         for (const entry of nutritionOrder) {
           if (nutrientInfo.hasOwnProperty(entry)) {
             nutritionDataString += nutrientInfo[entry];
