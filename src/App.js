@@ -27,7 +27,6 @@ function App() {
   const goalInput = useRef();
   const [nutritionQuery, setNutritionQuery] = useState();
   const nutritionInput = useRef();
-  const [nutritionData, setNutritionData] = useState();
   
   /*
   const handleChange = e => {
@@ -51,17 +50,39 @@ function App() {
     e.preventDefault();
     if (nutritionQuery === '') return
     nutritionInput.current.value = null;
-    setNutritionData("Loading nutrition data...");
+    let nutritionHTML = document.getElementById("nutritionData");
+    nutritionHTML.innerHTML = "Loading nutrition data...";
     fetchNutritionData(nutritionQuery)
     .then(result => {
-      console.log(result);
       try {
+        let nutritionIdMap = {
+          1003: "Protein",
+          1004: "Total Fat",
+          1005: "Total Carbohydrates",
+          1008: "Energy",
+          2000: "Total Sugars",
+          1093: "Sodium",
+          1235: "Added Sugar",
+          1253: "Cholesterol",
+          1258: "Saturated Fat",
+        }
         let nutrients = result.foods[0].foodNutrients;
-        let energyData = nutrients.find(e => e.nutrientName === "Energy");
-        setNutritionData(`${nutritionQuery} has an energy count of ${energyData.value} ${energyData.unitName.toLowerCase()}`);
+        let nutrientInfo = {};
+        for (const entry of nutrients) {
+          let nutrientName = nutritionIdMap[entry.nutrientId];
+          nutrientInfo[nutrientName] = `${nutrientName} - ${entry.value} ${entry.unitName.toLowerCase()}<br>`;
+        }
+        let nutritionDataString = `${nutritionQuery} has the following nutritional content:<br>`;
+        let nutritionOrder = ["Energy", "Total Fat", "Saturated Fat", "Cholesterol", "Sodium", "Total Carbohydrates", "Total Sugars", "Added Sugar", "Protein"];
+        for (const entry of nutritionOrder) {
+          if (nutrientInfo.hasOwnProperty(entry)) {
+            nutritionDataString += nutrientInfo[entry];
+          }
+        }
+        nutritionHTML.innerHTML = nutritionDataString;
       } catch (error) {
         console.log(error);
-        setNutritionData(`Oops, couldn't find any food data for the search term "${nutritionQuery}"`);
+        nutritionHTML.innerHTML = `Oops, couldn't find any food data for the search term "${nutritionQuery}"`;
       }
     })
   }
@@ -107,7 +128,7 @@ function App() {
       <form>
         <input onClick={handleNutritionSearch} type="button" id="nutritionSubmit" value="Search for nutrition data" />
       </form>
-      <p id="nutritionData">{nutritionData}</p>
+      <p id="nutritionData"></p>
     </div>
   );
 }
