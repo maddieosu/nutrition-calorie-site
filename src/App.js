@@ -4,6 +4,16 @@ import './normalize.css'
 
 const LOCAL_STORAGE_KEY = 'myLocalStorageKey';
 
+function fetchNutritionData(query) {
+  let init = {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({"query": query})
+  }
+  return fetch("https://api.nal.usda.gov/fdc/v1/foods/search?api_key=DEMO_KEY", init)
+  .then(res => res.json())
+}
+
 function App() {
   const [adviceParagraph, setAdvice] = useState();
   const [height, setHeight] = useState();
@@ -15,6 +25,9 @@ function App() {
   const isFemaleInput = useRef();
   const [goal, setGoal] = useState();
   const goalInput = useRef();
+  const [nutritionQuery, setNutritionQuery] = useState();
+  const nutritionInput = useRef();
+  const [nutritionData, setNutritionData] = useState();
   
   /*
   const handleChange = e => {
@@ -33,6 +46,25 @@ function App() {
     goalInput.current.value = null;
     setAdvice("Your height is " + height + "\nYour weight is " + weight + "\nYour sex is " + sex + ".\nYou are " + (weight - goal) + " lbs away from your goal."); 
   };
+
+  const handleNutritionSearch = e => {
+    e.preventDefault();
+    if (nutritionQuery === '') return
+    nutritionInput.current.value = null;
+    setNutritionData("Loading nutrition data...");
+    fetchNutritionData(nutritionQuery)
+    .then(result => {
+      console.log(result);
+      try {
+        let nutrients = result.foods[0].foodNutrients;
+        let energyData = nutrients.find(e => e.nutrientName === "Energy");
+        setNutritionData(`${nutritionQuery} has an energy count of ${energyData.value} ${energyData.unitName.toLowerCase()}`);
+      } catch (error) {
+        console.log(error);
+        setNutritionData(`Oops, couldn't find any food data for the search term "${nutritionQuery}"`);
+      }
+    })
+  }
 
   useEffect(() => {
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify([height, weight, sex, goal]));
@@ -68,6 +100,14 @@ function App() {
         <input onClick={handleSubmit} type="button" id="execute" value="Get my diet plan" />
       </form>
       <p id="advice">{adviceParagraph}</p>
+      <form>
+        Search nutrition data:
+        <input ref={nutritionInput} onChange={(e) => setNutritionQuery(e.target.value)} type="text" name="nutrition" />
+      </form>
+      <form>
+        <input onClick={handleNutritionSearch} type="button" id="nutritionSubmit" value="Search for nutrition data" />
+      </form>
+      <p id="nutritionData">{nutritionData}</p>
     </div>
   );
 }
