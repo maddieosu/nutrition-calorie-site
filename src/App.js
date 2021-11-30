@@ -27,6 +27,8 @@ function App() {
   const goalInput = useRef();
   const [nutritionQuery, setNutritionQuery] = useState();
   const nutritionInput = useRef();
+  const [calories, setCalories] = useState();
+
   
   /*
   const handleChange = e => {
@@ -43,7 +45,7 @@ function App() {
     heightInput.current.value = null;
     weightInput.current.value = null;
     goalInput.current.value = null;
-    setAdvice("Your height is " + height + "\nYour weight is " + weight + "\nYour sex is " + sex + ".\nYou are " + (weight - goal) + " lbs away from your goal."); 
+    setAdvice("Your height is " + height + "\nYour weight is " + weight + "\nYour sex is " + sex + ".\nYou are " + (weight - goal) + " lbs away from your goal. Your recommended calories per day is " + calories + " to reach your goal weight in " + Math.ceil(weight/4) + " month(s)"); 
   };
 
   const handleNutritionSearch = e => {
@@ -116,6 +118,10 @@ function App() {
       <form>
         Weight Goal: 
         <input ref={goalInput} onChange={(e) => setGoal(e.target.value)} type="text" name="goal" /> lbs
+      </form>
+      <form>
+        Calories: 
+        <input ref={(weight * 15) - 500} onChange={(e) => setCalories(e.target.value)} type="text" name="calories" /> 
       </form>
       <form>
         <input onClick={handleSubmit} type="button" id="execute" value="Get my diet plan" />
