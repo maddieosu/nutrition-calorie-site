@@ -27,7 +27,6 @@ function App() {
   const goalInput = useRef();
   const [nutritionQuery, setNutritionQuery] = useState();
   const nutritionInput = useRef();
-  const [calories, setCalories] = useState();
 
   
   /*
@@ -42,6 +41,7 @@ function App() {
   const handleSubmit = e => {
     e.preventDefault();
     if (height === '' || isNaN(height) || weight === '' || isNaN(weight) || sex === undefined || goal === '' || isNaN(goal)) return
+    let calories = (weight * 15) - 500;
     heightInput.current.value = null;
     weightInput.current.value = null;
     goalInput.current.value = null;
@@ -118,10 +118,6 @@ function App() {
       <form>
         Weight Goal: 
         <input ref={goalInput} onChange={(e) => setGoal(e.target.value)} type="text" name="goal" /> lbs
-      </form>
-      <form>
-        Calories: 
-        <input ref={(weight * 15) - 500} onChange={(e) => setCalories(e.target.value)} type="text" name="calories" /> 
       </form>
       <form>
         <input onClick={handleSubmit} type="button" id="execute" value="Get my diet plan" />
