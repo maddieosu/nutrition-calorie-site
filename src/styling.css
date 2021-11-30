@@ -30,7 +30,7 @@ Author: Christopher Castig | @castig
 -----------------------------------------------------------------------------*/
 body {
  /* background: url('../images/notebook.png');  */
- color: #000000; 
+ color: #ffffff; 
  font-family: 'Lato', sans-serif;
  line-height: 1.7; /* line-height is unit-less */
  font-size: 100%;
@@ -50,6 +50,11 @@ body {
  background-position: center;
  background-size: contain;
  text-align: center;
+}
+
+html {
+    height: 100%;
+    margin: auto;
 }
 
 @keyframes fadein {
@@ -79,4 +84,66 @@ body {
 @-o-keyframes fadein {
     from { opacity: 0; }
     to   { opacity: 1; }
+}
+
+body {
+    background: rgb(255, 255, 255);
+}
+
+.App {
+    background: rgb(45,0,119);
+    background: linear-gradient(229deg, rgba(45,0,119,1) 0%, rgba(83,22,121,1) 35%, rgba(0,8,148,1) 100%);
+    padding: 100px 150px 100px 150px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 20%;
+    text-shadow: 2px 1px 2px rgba(0,0,0,0.6);
+}
+
+#Reach {
+    color: rgba(255, 255, 255, 0.9);
+    text-shadow: 2px 1px 2px rgba(0,0,0,0.95);
+    text-shadow: 3px 1px 8px rgba(0,0,0,0.95);
+    text-shadow: 4px 2px 12px rgba(0,0,0,0.95);
+}
+
+#Just {
+    color: rgba(255, 255, 255, 0.9);
+    text-shadow: 2px 1px 2px rgba(0,0,0,1);
+    text-shadow: 2px 1px 7px rgba(0,0,0,1);
+    text-shadow: 3px 2px 12px rgba(0,0,0,1);
+}
+
+input[type="button"] {
+    padding: 10px;
+    margin: 2% 0px 0px 5%;
+    font-weight: bold;
+    font-size: 11px;
+    border-color: rgba(0, 0, 0, 0.0);
+    background: rgba(255,255,255,0.15);
+    text-shadow: 2px 1px 2px rgba(255,255,255,0.3);
+}
+
+input[type="button"]:hover {
+    background: rgba(255,255,255,0.25);
+}
+
+input[type="text"] {
+    background: rgba(255, 255, 255, 0.09);
+    border-color: rgba(0, 0, 0, 0.0);
+    color: white;
+    text-align: center;
+    width: 100px;
+    margin: 10px;
+}
+
+input[name="nutrition"] {
+    background: rgba(255, 255, 255, 0.09);
+    border-color: rgba(0, 0, 0, 0.0);
+    color: white;
+    text-align: center;
+    width: 200px;
+    margin: 10px;
 }
